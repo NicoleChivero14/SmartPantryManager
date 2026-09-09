@@ -1,5 +1,9 @@
 package com.richfield.smartpantry.models;
 
+/**
+ * One ingredient currently stored in the user's pantry.
+ * Quantity and unit are used by the strict recipe-matching logic.
+ */
 public class PantryItem {
     private long id;
     private String name;

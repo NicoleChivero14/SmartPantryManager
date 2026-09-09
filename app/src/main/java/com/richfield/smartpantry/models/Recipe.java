@@ -3,6 +3,9 @@ package com.richfield.smartpantry.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A cookable recipe with preparation steps and a list of required ingredients.
+ */
 public class Recipe {
     private long id;
     private String name;

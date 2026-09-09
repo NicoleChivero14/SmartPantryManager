@@ -1,5 +1,8 @@
 package com.richfield.smartpantry.models;
 
+/**
+ * One required ingredient for a recipe, including the minimum quantity and unit needed.
+ */
 public class RecipeIngredient {
     private long id;
     private long recipeId;
