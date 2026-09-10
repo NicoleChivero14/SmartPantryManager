@@ -13,6 +13,11 @@ import com.richfield.smartpantry.models.RecipeIngredient;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Local SQLite helper for Smart Pantry Manager.
+ * Creates tables on first run and provides full CRUD for pantry items,
+ * plus read access to seeded recipes and their ingredients.
+ */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "smart_pantry.db";
@@ -65,8 +70,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // --- Pantry CRUD ---
+    // --- Pantry CRUD (Create, Read, Update, Delete) ---
 
+    /** Create: insert a new pantry ingredient and return its row id. */
     public long insertPantryItem(PantryItem item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -77,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert(TABLE_PANTRY, null, values);
     }
 
+    /** Update: save changes to an existing pantry ingredient. */
     public int updatePantryItem(PantryItem item) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -87,11 +94,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.update(TABLE_PANTRY, values, "id = ?", new String[]{String.valueOf(item.getId())});
     }
 
+    /** Delete: remove a pantry ingredient by id. */
     public int deletePantryItem(long id) {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete(TABLE_PANTRY, "id = ?", new String[]{String.valueOf(id)});
     }
 
+    /** Read: fetch one pantry ingredient by id, or null if missing. */
     public PantryItem getPantryItem(long id) {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_PANTRY, null, "id = ?", new String[]{String.valueOf(id)},
@@ -104,6 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return item;
     }
 
+    /** Read: return all pantry ingredients sorted by name. */
     public List<PantryItem> getAllPantryItems() {
         List<PantryItem> items = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
