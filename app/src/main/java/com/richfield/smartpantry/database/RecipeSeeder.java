@@ -3,11 +3,16 @@ package com.richfield.smartpantry.database;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
+/**
+ * Pre-loads the recipe collection the first time the SQLite database is created.
+ * Provides 18 recipes so Suggested Recipes can match against the user's pantry.
+ */
 public class RecipeSeeder {
 
     private RecipeSeeder() {
     }
 
+    /** Insert all starter recipes and their required ingredients. */
     public static void seedRecipes(SQLiteDatabase db) {
         seedRecipe(db, "Scrambled Eggs",
                 "1. Beat eggs in a bowl.\n2. Melt butter in a pan.\n3. Pour eggs and stir gently until set.\n4. Season and serve.",
@@ -183,6 +188,7 @@ public class RecipeSeeder {
                 });
     }
 
+    /** Helper: insert one recipe row, then insert each of its ingredients. */
     private static void seedRecipe(SQLiteDatabase db, String name, String steps, String[][] ingredients) {
         ContentValues recipeValues = new ContentValues();
         recipeValues.put("name", name);
