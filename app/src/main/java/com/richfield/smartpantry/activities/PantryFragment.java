@@ -21,6 +21,10 @@ import com.richfield.smartpantry.models.PantryItem;
 
 import java.util.List;
 
+/**
+ * Pantry list screen: shows all ingredients from SQLite in a RecyclerView,
+ * with add (FAB), edit, and delete actions.
+ */
 public class PantryFragment extends Fragment implements PantryAdapter.PantryListener {
 
     private DatabaseHelper databaseHelper;
@@ -47,6 +51,7 @@ public class PantryFragment extends Fragment implements PantryAdapter.PantryList
         return view;
     }
 
+    /** Reload pantry items from the database whenever this screen becomes visible. */
     @Override
     public void onResume() {
         super.onResume();

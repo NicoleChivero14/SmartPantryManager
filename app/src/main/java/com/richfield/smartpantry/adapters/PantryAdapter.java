@@ -15,6 +15,10 @@ import com.richfield.smartpantry.models.PantryItem;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Custom RecyclerView adapter that binds pantry items to list rows
+ * and forwards edit/delete taps to the fragment.
+ */
 public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
 
     public interface PantryListener {
@@ -30,6 +34,7 @@ public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryView
         this.listener = listener;
     }
 
+    /** Replace the current list and refresh the RecyclerView. */
     public void setItems(List<PantryItem> newItems) {
         items.clear();
         items.addAll(newItems);
