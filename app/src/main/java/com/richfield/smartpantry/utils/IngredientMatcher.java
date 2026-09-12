@@ -48,6 +48,10 @@ public class IngredientMatcher {
         UNIT_ALIASES.put("pinches", "pinch");
     }
 
+    /**
+     * Normalise ingredient names for matching (lowercase, trim, simple plural handling).
+     * Example: "Tomatoes" and "tomato" resolve to the same key.
+     */
     public static String normalizeName(String name) {
         if (name == null) {
             return "";
@@ -63,6 +67,7 @@ public class IngredientMatcher {
         return normalized;
     }
 
+    /** Map unit spellings/aliases to a single canonical unit (e.g. tbsp → tablespoon). */
     public static String normalizeUnit(String unit) {
         if (unit == null || unit.trim().isEmpty()) {
             return "piece";
@@ -72,6 +77,10 @@ public class IngredientMatcher {
         return alias != null ? alias : key;
     }
 
+    /**
+     * Strict rule: return true only if every required ingredient is in the pantry
+     * with enough quantity. Partial matches are rejected.
+     */
     public static boolean canMakeRecipe(Recipe recipe, List<PantryItem> pantryItems) {
         for (RecipeIngredient required : recipe.getIngredients()) {
             if (!hasEnoughInPantry(required, pantryItems)) {
@@ -99,6 +108,7 @@ public class IngredientMatcher {
         return false;
     }
 
+    /** Filter the full recipe list down to only recipes the user can make right now. */
     public static List<Recipe> getSuggestedRecipes(List<Recipe> allRecipes, List<PantryItem> pantryItems) {
         List<Recipe> suggested = new ArrayList<>();
         for (Recipe recipe : allRecipes) {
