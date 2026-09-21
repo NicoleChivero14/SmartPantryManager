@@ -16,8 +16,13 @@ import com.richfield.smartpantry.database.DatabaseHelper;
 import com.richfield.smartpantry.models.PantryItem;
 import com.richfield.smartpantry.utils.PreferencesHelper;
 
+/**
+ * Add or edit a pantry ingredient.
+ * Opened via Intent from the pantry list; validates name and quantity before saving.
+ */
 public class AddEditIngredientActivity extends AppCompatActivity {
 
+    /** Optional Intent extra: when present, the screen edits this pantry item id. */
     public static final String EXTRA_ITEM_ID = "extra_item_id";
 
     private DatabaseHelper databaseHelper;
@@ -75,6 +80,7 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         saveButton.setOnClickListener(v -> saveItem());
     }
 
+    /** Prefill the form when editing an existing pantry item. */
     private void loadItem(long id) {
         PantryItem item = databaseHelper.getPantryItem(id);
         if (item == null) {
@@ -95,6 +101,10 @@ public class AddEditIngredientActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Validate required fields, then insert or update the pantry item in SQLite.
+     * Blocks save if name is empty or quantity is missing, zero, or not a number.
+     */
     private void saveItem() {
         String name = nameInput.getText().toString().trim();
         String quantityText = quantityInput.getText().toString().trim();
