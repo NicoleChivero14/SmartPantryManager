@@ -11,8 +11,13 @@ import com.richfield.smartpantry.database.DatabaseHelper;
 import com.richfield.smartpantry.models.Recipe;
 import com.richfield.smartpantry.models.RecipeIngredient;
 
+/**
+ * Recipe detail screen: shows full ingredient list and preparation steps
+ * for a recipe opened via Intent from the suggestions list.
+ */
 public class RecipeDetailActivity extends AppCompatActivity {
 
+    /** Intent extra carrying the selected recipe id. */
     public static final String EXTRA_RECIPE_ID = "extra_recipe_id";
 
     @Override

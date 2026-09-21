@@ -22,6 +22,10 @@ import com.richfield.smartpantry.utils.IngredientMatcher;
 
 import java.util.List;
 
+/**
+ * Suggested Recipes screen: runs strict matching against the current pantry
+ * and lists only recipes the user can make right now.
+ */
 public class SuggestedRecipesFragment extends Fragment implements RecipeAdapter.RecipeListener {
 
     private DatabaseHelper databaseHelper;
@@ -51,6 +55,7 @@ public class SuggestedRecipesFragment extends Fragment implements RecipeAdapter.
         loadSuggestedRecipes();
     }
 
+    /** Re-run matching whenever this tab is shown so suggestions stay up to date. */
     private void loadSuggestedRecipes() {
         List<PantryItem> pantryItems = databaseHelper.getAllPantryItems();
         List<Recipe> allRecipes = databaseHelper.getAllRecipes();

@@ -14,6 +14,9 @@ import com.richfield.smartpantry.models.Recipe;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RecyclerView adapter for suggested recipes; opens detail on row tap.
+ */
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeViewHolder> {
 
     public interface RecipeListener {
