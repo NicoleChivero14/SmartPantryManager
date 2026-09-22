@@ -10,6 +10,9 @@ import com.richfield.smartpantry.activities.PantryFragment;
 import com.richfield.smartpantry.activities.SettingsFragment;
 import com.richfield.smartpantry.activities.SuggestedRecipesFragment;
 
+/**
+ * Host activity with bottom navigation between Pantry, Suggested Recipes, and Settings.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigation);
+        // Swap fragments when the user taps a bottom-nav tab.
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment fragment;
             int itemId = item.getItemId();

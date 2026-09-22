@@ -3,6 +3,10 @@ package com.richfield.smartpantry.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Thin wrapper around SharedPreferences for user settings
+ * (expiry alerts and default ingredient unit).
+ */
 public class PreferencesHelper {
     private static final String PREFS_NAME = "smart_pantry_prefs";
     private static final String KEY_EXPIRY_ALERTS = "expiry_alerts";

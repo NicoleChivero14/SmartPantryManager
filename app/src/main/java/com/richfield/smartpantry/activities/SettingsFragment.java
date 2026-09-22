@@ -15,6 +15,9 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.richfield.smartpantry.R;
 import com.richfield.smartpantry.utils.PreferencesHelper;
 
+/**
+ * Settings screen: expiry-alert toggle and default unit preference for new pantry items.
+ */
 public class SettingsFragment extends Fragment {
 
     private PreferencesHelper preferencesHelper;
